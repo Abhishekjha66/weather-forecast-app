@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Weather Forecast App</title>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .bg-clear { background: linear-gradient(135deg,#fdfbfb 0%, #ebedee 100%); }
+    .bg-sunny { background: linear-gradient(135deg,#FFE29F 0%, #FFA99F 100%); color:#1f2937; }
+    .bg-cloudy { background: linear-gradient(135deg,#cfd9df 0%, #e2ebf0 100%); color:#111827; }
+    .bg-rainy { background: linear-gradient(135deg,#4b6cb7 0%, #182848 100%); color:white; }
+    .transition-bg { transition: background 500ms ease, color 500ms ease; }
+  </style>
+</head>
+<body class="min-h-screen bg-clear transition-bg">
+  <div class="max-w-4xl mx-auto p-6">
+    <h1 class="text-2xl font-bold mb-4">Weather Forecast App</h1>
+
+    <div class="flex gap-2 mb-4 flex-wrap items-center">
+      <input id="searchInput" type="text" placeholder="Enter city" 
+             class="flex-1 border p-2 rounded"/>
+      <button id="searchBtn" 
+              class="px-4 py-2 bg-blue-600 text-white rounded">Search</button>
+      <button id="geoBtn" 
+              class="px-4 py-2 border rounded">Use my location</button>
+      <div class="relative">
+        <button id="recentToggle" 
+                class="px-4 py-2 border rounded">Recent ▼</button>
+        <div id="recentList" 
+             class="absolute bg-white border rounded shadow mt-1 w-48 hidden z-10"></div>
+      </div>
+    </div>
+
+    <div id="weatherResult" class="mb-6"></div>
+    <div id="alerts" class="mb-6"></div>
+
+    <div id="forecastResult">
+      <h2 class="text-xl font-bold mb-2">5-Day Forecast</h2>
+      <div id="forecastGrid" class="grid sm:grid-cols-2 md:grid-cols-3 gap-4"></div>
+    </div>
+  </div>
+
+  <div id="modal" class="fixed inset-0 flex items-center justify-center bg-black/30 hidden z-40">
+    <div class="bg-white rounded p-4 w-11/12 max-w-md">
+      <div id="modalMsg" class="text-sm"></div>
+      <div class="text-right mt-3">
+        <button id="modalClose" class="px-3 py-1 border rounded">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
